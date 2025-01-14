@@ -1,32 +1,17 @@
 import React, { useState } from 'react'
 
-export default function About() {
-    const [style,setStyle] = useState({
-        color :'black',
-        backgroundColor : 'white',
-    });
-    const [btn,setBtn] = useState("Enable Dark");
-    const change = ()=>{
-        if(document.getElementById("flexSwitchCheckDefault").checked)
-        {
-            setStyle({
-                color:'white',
-                backgroundColor:'black'
-            })
-            setBtn("Enable Light");
-        }
-        else{
-            setStyle({
-                color:'black',
-                backgroundColor : 'white'
-            });
-            setBtn("Enable Dark")
-        }
-    }
+export default function About(props) {
+    const style = {
+        color : props.mode==='dark'?'white':'black',
+        backgroundColor : props.mode==='dark'?'rgb(66 71 114)':'white',
+    };
+    
   return (
-        <div className="container  my-3" style={style}>
+        <div className="container  my-3" style={{
+            color : props.mode==='dark'?'white':'black',
+            backgroundColor : props.mode==='dark'?'rgb(4 8 41)':'white'}}>
             <h1>About Us</h1>
-            <div className="accordion" id="accordionExample">
+        <div className="accordion" id="accordionExample">
         <div className="accordion-item" style={style}>
         <h2 className="accordion-header" >
             <button className="accordion-button" style={style}type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -63,12 +48,6 @@ export default function About() {
             </div>
         </div>
         </div>
-        </div>
-        <div className="container my-2">
- <div class="form-check form-switch">
-  <input className="form-check-input" type="checkbox" onChange={change} role="switch" id="flexSwitchCheckDefault"/>
-  <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Default switch checkbox input</label>
-</div>
         </div>    
         </div>
   )
